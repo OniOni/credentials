@@ -4,5 +4,5 @@ setup(
     name='credentials',
     author='Mathieu Sabourin',
     packages=['credentials'],
-    license='GPLv3'
+    license='LGPLv3'
 )
