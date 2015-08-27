@@ -6,6 +6,9 @@ class Credentials(object):
     def __init__(self, backends):
         self._backends = backends
 
+    def add_backend(self, backend):
+        self._backends.append(backend)
+
     def load(self, key):
         values = filter(lambda x: x is not None, [b.load(key) for b in self._backends])
 
