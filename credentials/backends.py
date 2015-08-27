@@ -14,7 +14,10 @@ class JsonFileBackend(object):
         self._path = path
 
     def load(self, key):
-        with open(self._path, 'r') as f:
-            doc = json.load(f)
+        try:
+            with open(self._path, 'r') as f:
+                doc = json.load(f)
 
-        return doc.get(key, None)
+            return doc.get(key, None)
+        except IOError:
+            return None
