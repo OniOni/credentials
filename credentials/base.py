@@ -10,7 +10,8 @@ class Credentials(object):
         self._backends.append(backend)
 
     def load(self, key):
-        values = filter(lambda x: x is not None, [b.load(key) for b in self._backends])
+        values = [x for x in [b.load(key) for b in self._backends]
+                  if x is not None]
 
         if len(values) > 0:
             return values[0]
