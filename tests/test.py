@@ -30,7 +30,7 @@ class TestCredentials(unittest.TestCase):
 
     def test_require_missing_key(self):
         try:
-            creds = self.loader.require(['lol', 'missing'])
+            self.loader.require(['lol', 'missing'])
         except KeyError:
             pass
         else:
@@ -43,7 +43,7 @@ class TestCredentials(unittest.TestCase):
 
     def test_load_missing_key(self):
         try:
-            cred = self.loader.load('missing')
+            self.loader.load('missing')
         except KeyError:
             pass
         else:
