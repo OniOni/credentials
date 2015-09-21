@@ -4,6 +4,6 @@ setup(
     name='credentials',
     author='Mathieu Sabourin',
     packages=['credentials'],
-    version=0.2,
+    version=0.3,
     license='LGPLv3'
 )
