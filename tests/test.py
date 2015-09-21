@@ -1,5 +1,9 @@
 import unittest
+
+import mock
+
 import credentials
+
 
 class FakeBackend(object):
 
@@ -64,6 +68,32 @@ class TestCredentials(unittest.TestCase):
 
         cred = self.loader.load('lol')
         self.assertEqual(cred, 42)
+
+
+class BasePatchTest(object):
+
+    def setUp(self):
+        self.mock = self.patch.start()
+        self.loader = credentials.Credentials([self.backend])
+
+    def tearDown(self):
+        self.patch.stop()
+
+
+class TestEnvBackend(BasePatchTest, unittest.TestCase):
+
+    def setUp(self):
+        self.backend = credentials.EnvBackend()
+        self.patch = mock.patch('os.getenv', auto_spec=True)
+        super(TestEnvBackend, self).setUp()
+
+    def test_simple(self):
+        self.backend.load('key')
+        self.mock.assert_called_with('key')
+
+    def test_e2e(self):
+        self.loader.load('key')
+        self.mock.assert_called_with('key')
 
 
 if __name__ == "__main__":
