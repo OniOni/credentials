@@ -95,6 +95,14 @@ class TestEnvBackend(BasePatchTest, unittest.TestCase):
         self.loader.load('key')
         self.mock.assert_called_with('key')
 
+class TestEnvBackend(unittest.TestCase):
+
+    def setUp(self):
+        self.backend = credentials.EnvBackend()
+
+    def test_missing_key_returns_none(self):
+        key = self.backend.load('this_key_should_not_be_in_any_env_42')
+        self.assertEqual(key, None)
 
 if __name__ == "__main__":
     unittest.main()
