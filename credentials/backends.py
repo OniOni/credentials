@@ -19,5 +19,5 @@ class JsonFileBackend(object):
                 doc = json.load(f)
 
             return doc.get(key, None)
-        except IOError:
+        except (IOError, ValueError):
             return None
