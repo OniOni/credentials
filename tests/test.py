@@ -95,14 +95,35 @@ class TestPatchedEnvBackend(BasePatchTest, unittest.TestCase):
         self.loader.load('key')
         self.mock.assert_called_with('key')
 
+
 class TestEnvBackend(unittest.TestCase):
 
     def setUp(self):
         self.backend = credentials.EnvBackend()
 
     def test_missing_key_returns_none(self):
-        key = self.backend.load('this_key_should_not_be_in_any_env_42')
-        self.assertEqual(key, None)
+        cred = self.backend.load('this_key_should_not_be_in_any_env_42')
+        self.assertEqual(cred, None)
+
+
+class TestPatchedJsonFileBackend(BasePatchTest, unittest.TestCase):
+
+    def setUp(self):
+        self.open = mock.mock_open(
+            read_data='{"key":42}'
+        )
+        self.patch = mock.patch('credentials.backends.open',
+                                self.open, create=True)
+        self.backend = credentials.JsonFileBackend('ignore')
+        super(TestPatchedJsonFileBackend, self).setUp()
+
+    def test_simple(self):
+        cred = self.backend.load('key')
+        self.assertEqual(cred, 42)
+
+    def test_e2e(self):
+        cred = self.loader.load('key')
+        self.assertEqual(cred, 42)
 
 if __name__ == "__main__":
     unittest.main()
