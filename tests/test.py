@@ -80,12 +80,12 @@ class BasePatchTest(object):
         self.patch.stop()
 
 
-class TestMockedEnvBackend(BasePatchTest, unittest.TestCase):
+class TestPatchedEnvBackend(BasePatchTest, unittest.TestCase):
 
     def setUp(self):
         self.backend = credentials.EnvBackend()
         self.patch = mock.patch('os.getenv', auto_spec=True)
-        super(TestMockedEnvBackend, self).setUp()
+        super(TestPatchedEnvBackend, self).setUp()
 
     def test_simple(self):
         self.backend.load('key')
