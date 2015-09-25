@@ -1,6 +1,11 @@
 import os
 import json
 
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
+
 
 class EnvBackend(object):
 
@@ -20,4 +25,21 @@ class JsonFileBackend(object):
 
             return doc.get(key, None)
         except (IOError, ValueError):
+            return None
+
+
+class ConfigFileBackend(object):
+
+    def __init__(self, path, section='credentials'):
+        self._path = path
+        self._section = section
+
+    def load(self, key):
+        try:
+            config = configparser.ConfigParser()
+            config.read(self._path)
+
+            return config.get(self._section, key)
+
+        except Exception:
             return None
