@@ -1,8 +1,8 @@
 import unittest
 
 import mock
+from credentials import JsonFileBackend
 
-import credentials
 from .util import BasePatchTest
 
 
@@ -14,7 +14,7 @@ class BasePatchedJsonFileBackend(BasePatchTest):
         )
         self.patch = mock.patch('credentials.backends.open',
                                 self.open, create=True)
-        self.backend = credentials.JsonFileBackend('ignore')
+        self.backend = JsonFileBackend('ignore')
         super(BasePatchedJsonFileBackend, self).setUp()
 
 
@@ -51,7 +51,7 @@ class BadPatchedJFBackend(BasePatchedJsonFileBackend, unittest.TestCase):
 class TestJsonFileBackend(unittest.TestCase):
 
     def setUp(self):
-        self.backend = credentials.JsonFileBackend('absent')
+        self.backend = JsonFileBackend('absent')
 
     def test_absent_json_file(self):
         cred = self.backend.load('key')

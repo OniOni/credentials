@@ -1,4 +1,5 @@
-import credentials
+from credentials import Credentials
+
 
 class FakeBackend(object):
 
@@ -13,7 +14,7 @@ class BasePatchTest(object):
 
     def setUp(self):
         self.mock = self.patch.start()
-        self.loader = credentials.Credentials([self.backend])
+        self.loader = Credentials([self.backend])
 
     def tearDown(self):
         self.patch.stop()

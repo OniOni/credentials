@@ -1,6 +1,7 @@
 import unittest
 
-import credentials
+from credentials import Credentials
+
 from .util import FakeBackend
 
 class TestCredentials(unittest.TestCase):
@@ -9,7 +10,7 @@ class TestCredentials(unittest.TestCase):
         self._cred_dict = {
             'lol': 42
         }
-        self.loader = credentials.Credentials([FakeBackend(self._cred_dict)])
+        self.loader = Credentials([FakeBackend(self._cred_dict)])
 
     def test_require(self):
         creds = self.loader.require(['lol'])
