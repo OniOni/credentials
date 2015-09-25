@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/OniOni/credentials.svg?branch=master)](https://travis-ci.org/OniOni/credentials)
 [![Requirements Status](https://requires.io/github/OniOni/credentials/requirements.svg?branch=master)](https://requires.io/github/OniOni/credentials/requirements/?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/credentials.svg)](https://pypi.python.org/pypi/credentials)
 
 # Installing
 ```shell
