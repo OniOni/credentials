@@ -4,6 +4,7 @@ from credentials import Credentials
 
 from .util import FakeBackend
 
+
 class TestCredentials(unittest.TestCase):
 
     def setUp(self):
@@ -15,7 +16,8 @@ class TestCredentials(unittest.TestCase):
     def test_require(self):
         creds = self.loader.require(['lol'])
 
-        self.assertTrue(getattr(creds, 'lol', False), 'Creds should contain "lol"')
+        self.assertTrue(getattr(creds, 'lol', False),
+                        'Creds should contain "lol"')
         self.assertEqual(creds.lol, 42)
 
     def test_require_missing_key(self):
