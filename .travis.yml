@@ -9,4 +9,4 @@ install:
   - python setup.py -q install
 script:
   - flake8 .
-  - py.test -v --cov credentias
+  - py.test -v --cov credentials
