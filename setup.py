@@ -7,6 +7,7 @@ setup(
     name='credentials',
     description='Credential Manager',
     long_description=LONG_DESCRIPTION,
+    long_description_content_type='text/markdown',
     author='Mathieu Sabourin',
     author_email='mathieu.c.sabourin@gmail.com',
     url='https://github.com/OniOni/credentials',
