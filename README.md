@@ -10,7 +10,7 @@ $ pip install credentials
 # Usage
 
 ## Default
-Using default setup, this will try and load credentials first from the processes environement variables and then from `~/.credentials.json`
+Using default setup, this will try and load credentials first from the processes environment variable and then from `~/.credentials.json`
 ```python
 from credentials import credentials
 # load credentials up front
